@@ -7,6 +7,7 @@ const conn = require('./db')
 const userRouter = require('./routes/user')
 
 const {logReqRes} = require('./middleware')
+
 // connection with database
 conn.connctiontoMongo('mongodb://localhost:27017/iSponsor') 
 
@@ -18,6 +19,10 @@ app.use(logReqRes('log.txt'))
 
 // routes
 app.use('/api/user', userRouter)
+
+// login auth 
+const loginAuthRouter = require('./routes/LoginAuthRout')
+app.use('/api/auth', loginAuthRouter)
 
 
 const port = process.env.PORT || 8000

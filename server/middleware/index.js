@@ -1,4 +1,12 @@
 const fs =require('fs')
+const express = require('express')
+
+const app = express()
+
+function bodyParser() {
+    app.use(express.json())
+    app.use(express.urlencoded({ extended: false }))
+}
 
 function logReqRes(filename) {
     return(req ,res , next)=>{
@@ -11,4 +19,5 @@ function logReqRes(filename) {
 
 module.exports = {
     logReqRes,
+    bodyParser
 }
