@@ -1,0 +1,22 @@
+require("fs").readdirSync(normalizedPath).forEach(function(file:any) {
+  let files = require("./routers/" + file);
+  app.use(files);
+});
+
+
+
+
+
+import express,{ Application } from "express";
+import { auth } from "../middleware/auth";
+import { validateUserData, loginValidationData, updateValidateData } from "../validators/User";
+import { userController } from "../controller/User";
+const router: Application = express();
+
+router.post('/users', validateUserData,  userController.createUser )
+
+router.post('/users/login', loginValidationData, userController.login)
+
+router.get('/users/me', userController.getUserDetails )
+
+//only Admin can get a
